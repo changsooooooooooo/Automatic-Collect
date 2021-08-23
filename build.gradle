@@ -30,7 +30,8 @@ dependencies {
     implementation 'org.springframework.integration:spring-integration-stomp'
     implementation 'org.springframework.integration:spring-integration-websocket'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.postgresql:postgresql'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+    runtimeOnly "mysql:mysql-connector-java:8.0.23"
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.integration:spring-integration-test'
