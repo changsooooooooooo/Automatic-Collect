@@ -1,7 +1,7 @@
 {
   "coin": {
     "bitcoin" : [
-      "krw-btc", "krw-bch", "krw-bcg", "krw-ltc"
+      "krw-btc", "krw-bch", "krw-btg", "krw-ltc"
     ],
     "ethereum": [
       "krw-etc", "krw-eth", "krw-ada", "krw-sand"
