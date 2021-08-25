@@ -1,0 +1,2 @@
+coin:
+  url: wss://api.upbit.com/websocket/v1

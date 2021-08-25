@@ -2,41 +2,35 @@ package com.autotradeserver.service.websockets;
 
 import com.neovisionaries.ws.client.*;
 import lombok.RequiredArgsConstructor;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class CoinWebSocket {
 
-    private final JSONParser jsonParser;
-    private final JSONArray jsonArray;
-    private JSONObject jsonObj;
+    private final List<JSONObject> returnList;
 
-    public WebSocket createWS(Integer timeout, String url) throws IOException, WebSocketException {
-
+    public WebSocket createWS(String url) throws IOException, WebSocketException {
         return new WebSocketFactory()
-                .setConnectionTimeout(timeout)
+                .setConnectionTimeout(Integer.MAX_VALUE)
                 .createSocket(url)
                 .addListener(new WebSocketAdapter(){
                     @Override
-                    public void onBinaryMessage(WebSocket websocket, byte[] binary) throws ParseException {
+                    public void onBinaryMessage(WebSocket websocket, byte[] binary) {
                         String text = new String(binary);
-                        jsonObj = (JSONObject) jsonParser.parse(text);
-                        jsonArray.add(jsonObj);
+                        returnList.add(new JSONObject(text));
                     }
                 })
                 .addExtension(WebSocketExtension.PERMESSAGE_DEFLATE)
                 .connect();
     }
 
-    public Object returnRecentValue(){
-        int length = jsonArray.size();
-        return jsonArray.get(length-1);
+    public JSONObject returnRecentValue(){
+        int size = returnList.size();
+        return returnList.get(size-1);
     }
 }

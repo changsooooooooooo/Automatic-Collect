@@ -3,7 +3,8 @@ package com.autotradeserver.service.domain;
 import com.autotradeserver.service.websockets.CoinWebSocket;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketException;
-import exceptions.SocketCreateException;
+import com.autotradeserver.exceptions.SocketConnectException;
+import com.autotradeserver.exceptions.SocketCreateException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +16,13 @@ public class StreamData {
 
     private final CoinWebSocket coinWebSocket;
 
-    public void createSocket(Integer timeOut, String url) throws SocketCreateException {
-        WebSocket ws;
-        try{
-            ws = coinWebSocket.createWS(timeOut, url);
+    public void createSocket(String url) throws SocketCreateException, SocketConnectException {
+        try {
+            WebSocket ws = coinWebSocket.createWS(url);
         } catch (IOException e) {
-            throw new SocketCreateException("check create socket url", url);
+            throw new SocketCreateException("Not Correct URL", url);
         } catch (WebSocketException e) {
-            e.printStackTrace();
+            throw new SocketConnectException(e.getError(), "Cannot Connect!");
         }
     }
 }

@@ -9,5 +9,4 @@ public class AutoTradeServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(AutoTradeServerApplication.class, args);
     }
-
 }
