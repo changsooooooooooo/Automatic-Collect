@@ -20,7 +20,7 @@ import java.util.Map;
 public class CoinController {
 
     private final StreamData streamData;
-    private final Configs configs;
+    private final Configs config;
 
     @GetMapping("")
     public Map<String, String> healthCheck(){
@@ -31,8 +31,7 @@ public class CoinController {
 
     @GetMapping("/trade")
     public void streamCoinInfo() throws SocketCreateException, SocketConnectException {
-        String url = configs.getValue("coin.url");
-        System.out.println(url);
+        System.out.println(config.getValue("coin.url"));
         streamData.createSocket("wss://asdfsa");
     }
 }
