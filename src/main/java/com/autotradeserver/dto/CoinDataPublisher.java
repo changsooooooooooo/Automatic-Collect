@@ -1,13 +1,19 @@
 package com.autotradeserver.dto;
 
-import org.json.JSONObject;
+import com.autotradeserver.exceptions.SocketConnectException;
+import com.autotradeserver.exceptions.SocketCreateException;
+import com.autotradeserver.service.domain.StreamData;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.util.concurrent.Flow.Publisher;
-import java.util.concurrent.Flow.Subscriber;
+@Service
+@RequiredArgsConstructor
+public class CoinDataPublisher{
 
-public class CoinDataPublisher implements Publisher<JSONObject> {
-    @Override
-    public void subscribe(Subscriber subscriber) {
+    private final StreamData streamData;
 
+    public void makeSubscriptionObj(String url) throws SocketConnectException, SocketCreateException {
+        streamData.createSocket(url);
     }
+
 }

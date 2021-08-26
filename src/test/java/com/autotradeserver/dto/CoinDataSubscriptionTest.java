@@ -10,10 +10,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.*;
+import java.util.stream.Collectors;
 
 @Log4j2
 @SpringBootTest
@@ -30,18 +31,26 @@ class CoinDataSubscriptionTest {
     @Test
     @DisplayName("Subscribe Test")
     void subscribingTest() throws SocketConnectException, SocketCreateException {
-        coinDataSubscription.makeSubscriptionObj("wss://api.upbit.com/websocket/v1");
-        coinDataSubscriber.onSubscribe(coinDataSubscription);
+//        coinDataSubscription.makeSubscriptionObj("wss://api.upbit.com/websocket/v1");
+//        coinDataSubscriber.onSubscribe(coinDataSubscription);
     }
 
     @Test
     @DisplayName("RequestMethodType Test")
     void howToRequestTest() throws SocketConnectException, SocketCreateException, ExecutionException, InterruptedException {
         ExecutorService executors = Executors.newSingleThreadExecutor();
-        Future<?> x = executors.submit(
-                ()-> coinDataSubscriber.onNext(new JSONObject())
-        );
-        System.out.println("x : "+x.toString());
+        ExecutorService executors2 = Executors.newSingleThreadExecutor();
+        ExecutorService executors3 = Executors.newSingleThreadExecutor();
+        ExecutorService executors4 = Executors.newSingleThreadExecutor();
+
+        CoinDataSubscription coinDataSubscription2 = new CoinDataSubscription("KRW-ETH", streamData, coinDataSubscriber);
+        CoinDataSubscription coinDataSubscription3 = new CoinDataSubscription("KRW-BTC", streamData, coinDataSubscriber);
+        CoinDataSubscription coinDataSubscription4 = new CoinDataSubscription("KRW-BTC", streamData, coinDataSubscriber);
+
+        List<CoinDataSubscription> subscriptionList = Arrays.asList(coinDataSubscription, coinDataSubscription3, coinDataSubscription4, coinDataSubscription2);
+
+//        List<CompletableFuture<Future <?>>> temp = subscriptionList.stream()
+//                .map(x->CompletableFuture.supplyAsync(()->))
     }
 
 }
