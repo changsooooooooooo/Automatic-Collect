@@ -5,6 +5,7 @@ import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.websockets.CoinWebSocket;
 import com.neovisionaries.ws.client.WebSocketException;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -25,9 +26,8 @@ public class StreamData {
         }
     }
 
-    public void transferMessage(String msg){
+    public JSONObject returnCurrentMsg(String msg){
         coinWebSocket.sendMessage(msg);
+        return coinWebSocket.returnRecentValue();
     }
-    //중복코드 ... 어떻게 수정할 수 있을까?
-    //고민해보자
 }

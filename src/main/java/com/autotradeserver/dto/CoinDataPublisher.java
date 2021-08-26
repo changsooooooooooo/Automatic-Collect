@@ -1,10 +1,11 @@
 package com.autotradeserver.dto;
 
-import com.autotradeserver.service.domain.StreamData;
+import org.json.JSONObject;
 
-import java.util.concurrent.Flow.*;
+import java.util.concurrent.Flow.Publisher;
+import java.util.concurrent.Flow.Subscriber;
 
-public class CoinDataPublisher implements Publisher<StreamData> {
+public class CoinDataPublisher implements Publisher<JSONObject> {
     @Override
     public void subscribe(Subscriber subscriber) {
 

@@ -28,7 +28,6 @@ public class CoinWebSocket {
                 })
                 .addExtension(WebSocketExtension.PERMESSAGE_DEFLATE)
                 .connect();
-
     }
 
     public void sendMessage(String msg){

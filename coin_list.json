@@ -1,40 +1,40 @@
 {
   "coin": {
     "bitcoin" : [
-      "krw-btc", "krw-bch", "krw-btg", "krw-ltc"
+      "KRW-BTC", "KRW-BCH", "KRW-BTG", "KRW-LTC"
     ],
     "ethereum": [
-      "krw-etc", "krw-eth", "krw-ada", "krw-sand"
+      "KRW-ETC", "KRW-ETH", "KRW-ADA", "KRW-SAND"
     ],
     "ripple": [
-      "krw-xrp", "krw-xlm"
+      "KRW-XRP", "KRW-XLM"
     ],
     "defi": [
-      "krw-eth", "krw-trx", "krw-dot", "krw-link", "krw-waves", "krw-jst", "krw-sxp"
+      "KRW-ETH", "KRW-TRX", "KRW-DOT", "KRW-LINK", "KRW-WAVES", "KRW-JST", "KRW-SXP"
     ],
     "did": [
-      "krw-meta", "krw-icx", "krw-ont", "krw-med", "krw-hum"
+      "KRW-META", "KRW-ICX", "KRW-ONT", "KRW-MED", "KRW-HUM"
     ],
     "nft": [
-      "krw-theta", "krw-chz", "krw-enj", "krw-flow", "krw-waxp", "krw-mana"
+      "KRW-THETA", "KRW-CHZ", "KRW-ENJ", "KRW-FLOW", "KRW-WAXP", "KRW-MANA"
     ],
     "platform": [
-      "krw-eos", "krw-waves", "krw-lsk", "krw-ark", "krw-iota", "krw-iost", "krw-xem", "krw-strax", "krw-xtz"
+      "KRW-EOS", "KRW-WAVES", "KRW-LSK", "KRW-ARK", "KRW-IOTA", "KRW-IOST", "KRW-XEM", "KRW-STRAX", "KRW-XTZ"
     ],
     "utility": [
-      "krw-omg", "krw-sc", "krw-glm", "krx-powr", "krw-cvc", "krw-rep", "krw-wax", "krw-link"
+      "KRW-OMG", "KRW-SC", "KRW-GLM", "KRW-POWR", "KRW-CVC", "KRW-REP", "KRW-WAX", "KRW-LINK"
     ],
     "stable" : [
-      "krw-sbd", "krx-ankr"
+      "KRW-SBD", "KRW-ANKR"
     ],
     "payment" : [
-      "krw-pundix"
+      "KRW-PUNDIX"
     ],
     "korea" : [
-      "krw-mvl", "krw-mlk", "krw-icx", "krw-med"
+      "KRW-MVL", "KRW-MLK", "KRW-ICX", "KRW-MED"
     ],
     "china" : [
-      "krw-neo", "krw-trx", "krw-ont", "krw-elf", "krw-vet"
+      "KRW-NEO", "KRW-TRX", "KRW-ONT", "KRW-ELF", "KRW-VET"
     ]
   }
 }
