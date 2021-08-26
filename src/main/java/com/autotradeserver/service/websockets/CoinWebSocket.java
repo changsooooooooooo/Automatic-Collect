@@ -12,10 +12,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CoinWebSocket {
 
+    private static WebSocket ws;
     private final List<JSONObject> returnList;
 
-    public WebSocket createWS(String url) throws IOException, WebSocketException {
-        return new WebSocketFactory()
+    public void createWS(String url) throws IOException, WebSocketException {
+        ws = new WebSocketFactory()
                 .setConnectionTimeout(Integer.MAX_VALUE)
                 .createSocket(url)
                 .addListener(new WebSocketAdapter(){
@@ -27,6 +28,11 @@ public class CoinWebSocket {
                 })
                 .addExtension(WebSocketExtension.PERMESSAGE_DEFLATE)
                 .connect();
+
+    }
+
+    public void sendMessage(String msg){
+        ws.sendText(msg);
     }
 
     public JSONObject returnRecentValue(){

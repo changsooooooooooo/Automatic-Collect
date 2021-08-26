@@ -19,8 +19,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class CoinController {
 
-    private final StreamData streamData;
     private final Configs config;
+    private final StreamData streamData;
 
     @GetMapping("")
     public Map<String, String> healthCheck(){
@@ -31,7 +31,7 @@ public class CoinController {
 
     @GetMapping("/trade")
     public void streamCoinInfo() throws SocketCreateException, SocketConnectException {
-        System.out.println(config.getValue("coin.url"));
-        streamData.createSocket("wss://asdfsa");
+        String url = config.getValue("coin.url");
+        streamData.createSocket(url);
     }
 }
