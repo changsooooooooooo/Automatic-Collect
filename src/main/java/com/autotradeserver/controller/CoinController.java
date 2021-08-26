@@ -25,7 +25,7 @@ public class CoinController {
     @GetMapping("")
     public Map<String, String> healthCheck(){
         return Map.of(
-                "Health", HttpStatus.OK.toString()
+                "Health", HttpStatus.OK.name()
         );
     }
 
