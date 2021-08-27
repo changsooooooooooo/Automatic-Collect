@@ -5,11 +5,9 @@ import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.Flow.Subscriber;
-import java.util.concurrent.Flow.Subscription;
+import java.util.concurrent.Flow.*;
 
 @Log4j2
-@Service
 @RequiredArgsConstructor
 public class CoinDataSubscriber implements Subscriber<JSONObject> {
 
