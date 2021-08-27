@@ -3,7 +3,6 @@ package com.autotradeserver.dto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
-import org.springframework.stereotype.Service;
 
 import java.util.concurrent.Flow.*;
 
