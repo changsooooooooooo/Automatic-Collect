@@ -4,6 +4,9 @@ import com.autotradeserver.config.Configs;
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.StreamData;
+import com.autotradeserver.service.websockets.CoinWebSocket;
+import com.neovisionaries.ws.client.WebSocket;
+import com.neovisionaries.ws.client.WebSocketException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.Map;
 
 @Log4j2
@@ -21,6 +25,7 @@ public class CoinController {
 
     private final Configs config;
     private final StreamData streamData;
+    private final CoinWebSocket coinWebSocket;
 
     @GetMapping("")
     public Map<String, String> healthCheck(){
@@ -30,8 +35,8 @@ public class CoinController {
     }
 
     @GetMapping("/trade")
-    public void streamCoinInfo() throws SocketCreateException, SocketConnectException {
+    public void streamCoinInfo() throws IOException, WebSocketException {
         String url = config.getValue("coin.url");
-        streamData.createSocket(url);
+        coinWebSocket.createWS(url);
     }
 }

@@ -9,12 +9,15 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 @RequiredArgsConstructor
 public class StreamData {
 
     private final CoinWebSocket coinWebSocket;
+    private final ExecutorService es = Executors.newCachedThreadPool();
 
     public void createSocket(String url) throws SocketCreateException, SocketConnectException {
         try {
@@ -27,7 +30,6 @@ public class StreamData {
     }
 
     public JSONObject returnCurrentMsg(String msg){
-        coinWebSocket.sendMessage(msg);
-        return coinWebSocket.returnRecentValue();
+        return new JSONObject();
     }
 }

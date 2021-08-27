@@ -12,7 +12,7 @@ import java.util.concurrent.Flow.Subscription;
 
 @Log4j2
 @RequiredArgsConstructor
-public class CoinDataSubscription implements Subscription {
+public class CoinDataSubscription  {
 
     private final String msg;
     private final StreamData streamData;
@@ -20,17 +20,17 @@ public class CoinDataSubscription implements Subscription {
     private final ExecutorService executors = Executors.newSingleThreadExecutor();
 
 
-    @Override
-    public void request(long n) {
-        executors.submit(
-                () -> subscriber.onNext(
-                        streamData.returnCurrentMsg(msg)
-                )
-        );
-    }
-
-    @Override
-    public void cancel() {
-        subscriber.onComplete();
-    }
+//    @Override
+//    public void request(long n) {
+//        executors.submit(
+//                () -> subscriber.onNext(
+//                        streamData.returnCurrentMsg(msg)
+//                )
+//        );
+//    }
+//
+//    @Override
+//    public void cancel() {
+//        subscriber.onComplete();
+//    }
 }

@@ -3,6 +3,7 @@ package com.autotradeserver.dto;
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.StreamData;
+import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +35,6 @@ class CoinDataPublisherTest {
     void testFuture() throws SocketConnectException, SocketCreateException {
         List<CoinDataPublisher> publisherList = new ArrayList<>();
         coinDataPublisher.makeSubscriptionObj("wss://api.upbit.com/websocket/v1");
-        for(int i = 0; i<5; i++){
-            publisherList.add(coinDataPublisher);
-        }
-
-        List<CompletableFuture<String>> x = publisherList.stream()
-                .map(publisher->CompletableFuture.supplyAsync(
-                        ()->publisher.subscribe("KRW-ETH")
-                ))
-                .collect(Collectors.toList());
-
-        // need return!
+//        coinDataPublisher.subscribe("KRW-ETH");
     }
 }
