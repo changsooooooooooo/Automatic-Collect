@@ -19,6 +19,13 @@ class CoinDataPublisherTest {
     private CoinDataPublisher coinDataPublisher;
 
     @Test
+    @DisplayName("Getter Test for Static Variable")
+    void testGetter(){
+        StreamData streamData = coinDataPublisher.returnStreamData();
+        System.out.println(streamData);
+    }
+
+    @Test
     @DisplayName("Combinate with completableFuture for use service")
     void testFuture() throws SocketConnectException, SocketCreateException {
         coinDataPublisher.makeSubscriptionObj("wss://api.upbit.com/websocket/v1");
