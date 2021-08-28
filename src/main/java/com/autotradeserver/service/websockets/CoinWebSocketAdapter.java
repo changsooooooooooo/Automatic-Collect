@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 public class CoinWebSocketAdapter extends WebSocketAdapter {
 
     private JSONObject jsonObject;
-    private static CompletableFuture<JSONObject> completableFuture;
+    private CompletableFuture<JSONObject> completableFuture;
     private static final ExecutorService es = Executors.newCachedThreadPool();
 
     @Override
@@ -27,6 +27,7 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
                 ()->{
                     String text = new String(binary);
                     jsonObject = new JSONObject(text);
+                    System.out.println(jsonObject);
                     completableFuture.complete(jsonObject);
                     return null;
                 }
@@ -43,5 +44,4 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
             throw new CompletableFutureInterruptException("Interrupt Exception!");
         }
     }
-
 }

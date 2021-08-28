@@ -16,8 +16,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class CoinWebSocket {
 
-    private static WebSocket ws;
-    private JSONObject jsonObject;
+    private WebSocket ws;
     private final CoinWebSocketAdapter coinWebSocketAdapter;
 
     public void createWS(String url)

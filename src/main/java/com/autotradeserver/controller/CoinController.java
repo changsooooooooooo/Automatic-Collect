@@ -40,6 +40,7 @@ public class CoinController {
         JSONObject json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"],\"isOnlyRealtime\":1}]");
         while(true){
             System.out.println("Real Json : " + json);
+            json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"],\"isOnlyRealtime\":1}]");
         }
     }
 }
