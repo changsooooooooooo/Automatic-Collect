@@ -1,0 +1,6 @@
+logging:
+  file:
+    path: ./log/
+
+server:
+  port: 8085
