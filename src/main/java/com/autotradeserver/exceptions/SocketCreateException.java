@@ -1,10 +1,7 @@
 package com.autotradeserver.exceptions;
 
-import lombok.Getter;
-
 import java.io.IOException;
 
-@Getter
 public class SocketCreateException extends IOException {
 
     private final String url;

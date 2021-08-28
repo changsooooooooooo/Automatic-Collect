@@ -5,7 +5,8 @@ import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.concurrent.Flow.*;
+import java.util.concurrent.Flow.Subscriber;
+import java.util.concurrent.Flow.Subscription;
 
 @Log4j2
 @Configuration

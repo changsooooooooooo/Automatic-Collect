@@ -4,17 +4,16 @@ import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.StreamData;
 import lombok.extern.log4j.Log4j2;
-import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.*;
-import java.util.stream.Collectors;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Log4j2
 @SpringBootTest

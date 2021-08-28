@@ -4,10 +4,7 @@ import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.StreamData;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.concurrent.Flow.Publisher;
 
 @Configuration
 @RequiredArgsConstructor
