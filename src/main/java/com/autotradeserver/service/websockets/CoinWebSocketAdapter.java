@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -14,21 +16,23 @@ import java.util.concurrent.Executors;
 public class CoinWebSocketAdapter extends WebSocketAdapter {
 
     private JSONObject jsonObject;
-    private static ExecutorService es = Executors.newSingleThreadExecutor();
+    private static final ExecutorService es = Executors.newCachedThreadPool();
+    private static final CompletableFuture<JSONObject> completableFuture = new CompletableFuture<>();
 
     @Override
-    public void onBinaryMessage(WebSocket websocket, byte[] binary) {
-        String text = new String(binary);
-        jsonObject = new JSONObject(text);
+    public void onBinaryMessage(WebSocket websocket, byte[] binary){
+        es.submit(
+                ()->{
+                    String text = new String(binary);
+                    jsonObject = new JSONObject(text);
+                    completableFuture.complete(jsonObject);
+                    return null;
+                }
+        );
     }
 
-    @Override
-    public void onTextMessage(WebSocket websocket, String text) {
-        jsonObject = new JSONObject(text);
-    }
-
-    public JSONObject returnCurrentJson(){
-        return jsonObject;
+    public JSONObject returnCurrentJson() throws ExecutionException, InterruptedException {
+        return completableFuture.get();
     }
 
 }

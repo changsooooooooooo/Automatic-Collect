@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +32,7 @@ public class CoinWebSocket {
         ws.sendText(msg);
     }
 
-    public JSONObject getRecentMessage(String msg) {
+    public JSONObject getRecentMessage(String msg) throws ExecutionException, InterruptedException {
         sendMessage(msg);
         return coinWebSocketAdapter.returnCurrentJson();
     }
