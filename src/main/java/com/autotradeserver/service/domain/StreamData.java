@@ -18,7 +18,8 @@ public class StreamData {
 
     private final CoinWebSocket coinWebSocket;
 
-    public void createSocket(String url) throws SocketCreateException, SocketConnectException {
+    public void createSocket(String url)
+            throws SocketCreateException, SocketConnectException {
         try {
             coinWebSocket.createWS(url);
         } catch (IOException e) {
@@ -28,7 +29,8 @@ public class StreamData {
         }
     }
 
-    public JSONObject returnCurrentMsg(String msg) throws CompletableFutureException, CompletableFutureInterruptException {
+    public JSONObject returnCurrentMsg(String msg)
+            throws CompletableFutureException, CompletableFutureInterruptException {
         return coinWebSocket.getRecentMessage(msg);
     }
 }

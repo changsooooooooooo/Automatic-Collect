@@ -20,7 +20,8 @@ public class CoinWebSocket {
     private JSONObject jsonObject;
     private final CoinWebSocketAdapter coinWebSocketAdapter;
 
-    public void createWS(String url) throws IOException, WebSocketException {
+    public void createWS(String url)
+            throws IOException, WebSocketException {
         ws = new WebSocketFactory()
         .setConnectionTimeout(Integer.MAX_VALUE)
         .createSocket(url)
@@ -33,7 +34,8 @@ public class CoinWebSocket {
         ws.sendText(msg);
     }
 
-    public JSONObject getRecentMessage(String msg) throws CompletableFutureException, CompletableFutureInterruptException {
+    public JSONObject getRecentMessage(String msg)
+            throws CompletableFutureException, CompletableFutureInterruptException {
         sendMessage(msg);
         return coinWebSocketAdapter.returnCurrentJson();
     }

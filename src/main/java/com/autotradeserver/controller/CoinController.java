@@ -8,7 +8,6 @@ import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.StreamData;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +37,9 @@ public class CoinController {
             throws CompletableFutureException, CompletableFutureInterruptException, SocketConnectException, SocketCreateException {
         String url = config.getValue("coin.url");
         streamData.createSocket(url);
-        JSONObject json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"],\"\":1}]");
-        return json.toString();
+        JSONObject json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"],\"isOnlyRealtime\":1}]");
+        while(true){
+            System.out.println("Real Json : " + json);
+        }
     }
 }
