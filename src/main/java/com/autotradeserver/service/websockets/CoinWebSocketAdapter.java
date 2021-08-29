@@ -27,7 +27,6 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
                 ()->{
                     String text = new String(binary);
                     jsonObject = new JSONObject(text);
-                    System.out.println(jsonObject);
                     completableFuture.complete(jsonObject);
                     return null;
                 }
