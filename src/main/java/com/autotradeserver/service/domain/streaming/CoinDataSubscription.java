@@ -26,11 +26,9 @@ public class CoinDataSubscription implements Subscription {
         executors.submit(
                 () -> {
                     try {
-                        for(long i = 0; i<n; i++){
-                            subscriber.onNext(
-                                    streamData.returnCurrentMsg(msg)
-                            );
-                        }
+                        subscriber.onNext(
+                                streamData.returnCurrentMsg(msg)
+                        );
                     } catch (CompletableFutureException e) {
                         e.printStackTrace();
                     } catch (CompletableFutureInterruptException e) {
