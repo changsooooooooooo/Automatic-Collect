@@ -17,13 +17,13 @@ public class CoinDataSubscriber implements Subscriber<JSONObject> {
     @Override
     public void onSubscribe(Subscription subscription) {
         this.subscription = subscription;
-        this.subscription.request(10L);
+        this.subscription.request(1L);
     }
 
     @Override
     public void onNext(JSONObject item) {
         log.info("Current Item : {}", item);
-        subscription.request(10L);
+        subscription.request(1L);
     }
 
     @Override

@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.concurrent.Flow.Publisher;
+import java.util.concurrent.Flow.*;
 
 @Configuration
 @RequiredArgsConstructor

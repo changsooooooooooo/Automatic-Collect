@@ -18,12 +18,11 @@ public class CoinDataSubscription implements Subscription {
     private final String msg;
     private final StreamData streamData;
     private final Subscriber<? super JSONObject> subscriber;
-    private static final ExecutorService executors = Executors.newSingleThreadExecutor();
-
+    private static final ExecutorService es = Executors.newSingleThreadExecutor();
 
     @Override
     public void request(long n){
-        executors.submit(
+        es.submit(
                 () -> {
                     try {
                         subscriber.onNext(

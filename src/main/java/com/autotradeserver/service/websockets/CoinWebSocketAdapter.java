@@ -19,7 +19,6 @@ import java.util.concurrent.Executors;
 @RequiredArgsConstructor
 public class CoinWebSocketAdapter extends WebSocketAdapter {
 
-    private JSONObject jsonObject;
     private CompletableFuture<JSONObject> completableFuture;
     private static final ExecutorService es = Executors.newCachedThreadPool();
 
@@ -28,9 +27,9 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
         es.submit(
                 ()->{
                     String text = new String(binary);
-                    jsonObject = new JSONObject(text);
-                    log.info("Real Json : {}", jsonObject);
-                    completableFuture.complete(jsonObject);
+                    JSONObject msgJsonObject = new JSONObject(text);
+                    log.info("Real Json : {}", msgJsonObject);
+                    completableFuture.complete(msgJsonObject);
                 }
         );
     }

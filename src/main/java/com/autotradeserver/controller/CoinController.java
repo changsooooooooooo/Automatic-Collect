@@ -30,13 +30,10 @@ public class CoinController {
     }
 
     @GetMapping("/trade")
-    public String streamCoinInfo()
+    public void streamCoinInfo()
             throws SocketConnectException, SocketCreateException {
         String url = config.getValue("coin.url");
         coinDataPublisher.makeSubscriptionObj(url);
         coinDataPublisher.subscribe("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
-        while(true){
-            continue;
-        }
     }
 }
