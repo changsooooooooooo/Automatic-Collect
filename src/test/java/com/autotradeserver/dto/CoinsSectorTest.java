@@ -22,8 +22,6 @@ class CoinsSectorTest {
         private List<String> china;
     }
 
-
-
     private final ObjectMapper mapper = new ObjectMapper();
 
     private CoinsSector coinsSector;

@@ -18,7 +18,7 @@ public class CoinControllerAdvice {
             CompletableFutureException.class,
             CompletableFutureInterruptException.class})
     public ResponseEntity<Object> badConnection(final Exception e) {
-        Map<String, Object> errorMap = new HashMap<>();
+        Map<String, Object> errorMap;
         errorMap = returnErrorJson(e);
         log.info("Error Map : {}", errorMap);
         return ResponseEntity.badRequest().body(errorMap);
