@@ -8,8 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 @SpringBootTest
@@ -39,6 +38,13 @@ class CoinsSectorTest {
     @DisplayName("From Json List Test")
     void readValueMapperTest() throws IOException {
         coinsSector = mapper.readValue(new File("./coin_list.json"), CoinsSector.class);
-        System.out.println(coinsSector.getEthereum());
+    }
+
+    @Test
+    @DisplayName("How to Make Obj")
+    void makeCoinsSectorTest() throws IOException {
+        FileInputStream fr = new FileInputStream("./coin_list.json");
+        BufferedInputStream reader = new BufferedInputStream(fr);
+        coinsSector = mapper.readValue(reader, CoinsSector.class);
     }
 }
