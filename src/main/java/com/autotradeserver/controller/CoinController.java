@@ -1,14 +1,11 @@
 package com.autotradeserver.controller;
 
 import com.autotradeserver.config.Configs;
-import com.autotradeserver.exceptions.CompletableFutureException;
-import com.autotradeserver.exceptions.CompletableFutureInterruptException;
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
-import com.autotradeserver.service.domain.StreamData;
+import com.autotradeserver.service.domain.streaming.CoinDataPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +20,7 @@ import java.util.Map;
 public class CoinController {
 
     private final Configs config;
-    private final StreamData streamData;
+    private final CoinDataPublisher coinDataPublisher;
 
     @GetMapping("")
     public Map<String, String> healthCheck(){
@@ -34,13 +31,12 @@ public class CoinController {
 
     @GetMapping("/trade")
     public String streamCoinInfo()
-            throws CompletableFutureException, CompletableFutureInterruptException, SocketConnectException, SocketCreateException {
+            throws SocketConnectException, SocketCreateException {
         String url = config.getValue("coin.url");
-        streamData.createSocket(url);
-        JSONObject json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"],\"isOnlyRealtime\":1}]");
+        coinDataPublisher.makeSubscriptionObj(url);
+        coinDataPublisher.subscribe("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
         while(true){
-            System.out.println("Real Json : " + json);
-            json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"],\"isOnlyRealtime\":1}]");
+            continue;
         }
     }
 }

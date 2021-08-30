@@ -29,7 +29,7 @@ public class CoinWebSocket {
         .connect();
     }
 
-    public void sendMessage(String msg) {
+    private void sendMessage(String msg) {
         ws.sendText(msg);
     }
 
@@ -38,5 +38,4 @@ public class CoinWebSocket {
         sendMessage(msg);
         return coinWebSocketAdapter.returnCurrentJson();
     }
-
 }

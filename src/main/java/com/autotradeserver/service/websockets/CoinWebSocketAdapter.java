@@ -5,6 +5,7 @@ import com.autotradeserver.exceptions.CompletableFutureInterruptException;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class CoinWebSocketAdapter extends WebSocketAdapter {
@@ -27,6 +29,7 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
                 ()->{
                     String text = new String(binary);
                     jsonObject = new JSONObject(text);
+                    log.info("Real Json : {}", jsonObject);
                     completableFuture.complete(jsonObject);
                 }
         );
