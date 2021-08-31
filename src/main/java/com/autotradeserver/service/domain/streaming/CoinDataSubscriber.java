@@ -23,7 +23,6 @@ public class CoinDataSubscriber implements Subscriber<JSONArray> {
 
     @Override
     public void onNext(JSONArray item) {
-        log.info("Current Item : {}", item);
         subscription.request(1L);
     }
 

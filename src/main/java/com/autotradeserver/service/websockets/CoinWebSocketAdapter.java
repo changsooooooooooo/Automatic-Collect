@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 public class CoinWebSocketAdapter extends WebSocketAdapter {
 
-    private JSONArray jsonArr;
+    private JSONArray jsonArr = new JSONArray();
     private CompletableFuture<JSONArray> completableFuture;
 
     @Override
@@ -28,12 +28,11 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
         String text = new String(binary);
         JSONObject json = new JSONObject(text);
         jsonArr = jsonArr.put(json);
-        log.info("Json : {}, Got Msg : {}", json, jsonArr.length());
         completableFuture.complete(jsonArr);
     }
 
     public JSONArray returnCurrentJson() throws CompletableFutureException, CompletableFutureInterruptException {
-        jsonArr = new JSONArray();
+//        jsonArr = new JSONArray();
         completableFuture = new CompletableFuture<>();
         try {
             return completableFuture.get();
