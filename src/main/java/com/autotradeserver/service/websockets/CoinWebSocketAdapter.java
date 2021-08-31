@@ -30,6 +30,7 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
         JSONObject json = new JSONObject(text);
         log.info("Json : {}", json);
         jsonArr = jsonArr.put(json);
+        log.info("Current JsonArr Length : {}", jsonArr.length());
         completableFuture.complete(jsonArr);
     }
 
@@ -46,6 +47,7 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
     }
 
     public void makeSubJsonArr(int strIdx){
+        log.info("StartIdx : {}, JsonLength : {}", strIdx, jsonArr.length());
         List<Object> jsonList = jsonArr.toList()
                 .subList(strIdx, jsonArr.length());
         jsonArr = new JSONArray(jsonList);

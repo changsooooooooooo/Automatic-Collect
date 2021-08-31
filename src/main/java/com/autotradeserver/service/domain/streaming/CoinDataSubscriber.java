@@ -25,8 +25,10 @@ public class CoinDataSubscriber implements Subscriber<JSONArray> {
 
     @Override
     public void onNext(final JSONArray item) {
+        log.info("Item : {}", item);
+        log.info("Before Idx : {}", startIdx.curIdx());
         startIdx.changeStartIdx(item.length());
-        log.info("Item : {}, Idx : {}", item, startIdx.curIdx());
+        log.info("After Idx : {}", startIdx.curIdx());
         subscription.request(1L);
     }
 
