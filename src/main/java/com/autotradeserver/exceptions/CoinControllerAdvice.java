@@ -30,5 +30,4 @@ public class CoinControllerAdvice {
         errorMap.put("Message", e.getMessage());
         return errorMap;
     }
-
 }

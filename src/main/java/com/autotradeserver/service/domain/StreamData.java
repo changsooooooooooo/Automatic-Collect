@@ -29,8 +29,8 @@ public class StreamData {
         }
     }
 
-    public JSONArray returnCurrentMsg(String msg)
+    public JSONArray returnCurrentMsg(String msg, int strIdx)
             throws CompletableFutureException, CompletableFutureInterruptException {
-        return coinWebSocket.getRecentMessage(msg);
+        return coinWebSocket.getRecentMessage(msg, strIdx);
     }
 }

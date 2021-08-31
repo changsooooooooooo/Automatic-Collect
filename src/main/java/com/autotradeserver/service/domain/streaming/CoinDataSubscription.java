@@ -1,5 +1,6 @@
 package com.autotradeserver.service.domain.streaming;
 
+import com.autotradeserver.dto.startIdx.StartIdx;
 import com.autotradeserver.exceptions.CompletableFutureException;
 import com.autotradeserver.exceptions.CompletableFutureInterruptException;
 import com.autotradeserver.service.domain.StreamData;
@@ -17,17 +18,19 @@ import java.util.concurrent.Flow.Subscription;
 public class CoinDataSubscription implements Subscription {
 
     private final String msg;
+    private final StartIdx startIdx;
     private final StreamData streamData;
     private final Subscriber<? super JSONArray> subscriber;
     private static final ExecutorService es = Executors.newSingleThreadExecutor();
 
     @Override
-    public void request(long n){
+    public void request(final long n){
+        int idx = startIdx.curIdx();
         es.submit(
                 () -> {
                     try {
                         subscriber.onNext(
-                                streamData.returnCurrentMsg(msg)
+                                streamData.returnCurrentMsg(msg, idx)
                         );
                     } catch (CompletableFutureException e) {
                         e.printStackTrace();

@@ -3,9 +3,11 @@ package com.autotradeserver.dto.coinsector;
 import com.autotradeserver.config.Configs;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.*;
 
+@Configuration
 @RequiredArgsConstructor
 public class CoinDTO {
 

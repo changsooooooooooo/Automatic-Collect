@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -29,7 +30,7 @@ class CoinWebSocketAdapterTest {
     @DisplayName("Future onBinaryMessage Test")
     void returnMsgTest() throws WebSocketException, IOException, ExecutionException, InterruptedException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        JSONArray jsonPacketArr = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
+        JSONArray jsonPacketArr = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]", 0);
         System.out.println("Json Object : "+jsonPacketArr);
     }
 
@@ -37,16 +38,16 @@ class CoinWebSocketAdapterTest {
     @DisplayName("BufferTest")
     void returnCurMsg() throws WebSocketException, IOException, CompletableFutureException, CompletableFutureInterruptException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
+        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]", 0);
     }
 
     @Test
     @DisplayName("Return Condition Check TDD")
     void returnConditionCheckTest() throws WebSocketException, IOException, CompletableFutureException, CompletableFutureInterruptException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        JSONArray json = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
-        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
-        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
+        JSONArray json = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]", 0);
+        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]", 0);
+        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]", 0);
         System.out.println("Return Json : " + coinWebSocketAdapter.getJsonArr().length());
     }
 }
