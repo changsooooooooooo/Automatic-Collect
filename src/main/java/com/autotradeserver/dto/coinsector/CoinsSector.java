@@ -1,7 +1,6 @@
 package com.autotradeserver.dto.coinsector;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

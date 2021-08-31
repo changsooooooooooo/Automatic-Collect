@@ -19,17 +19,18 @@ import java.util.concurrent.Executors;
 @RequiredArgsConstructor
 public class CoinWebSocketAdapter extends WebSocketAdapter {
 
+    private JSONObject jsonObj;
     private CompletableFuture<JSONObject> completableFuture;
-    private static final ExecutorService es = Executors.newCachedThreadPool();
+    private static final ExecutorService es = Executors.newSingleThreadExecutor();
 
     @Override
     public void onBinaryMessage(WebSocket websocket, byte[] binary){
         es.submit(
                 ()->{
                     String text = new String(binary);
-                    JSONObject msgJsonObject = new JSONObject(text);
-                    log.info("Real Json : {}", msgJsonObject);
-                    completableFuture.complete(msgJsonObject);
+                    jsonObj = new JSONObject(text);
+                    log.info("Real Json : {}", jsonObj);
+                    completableFuture.complete(jsonObj);
                 }
         );
     }
