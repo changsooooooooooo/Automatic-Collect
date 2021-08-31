@@ -2,6 +2,7 @@ package com.autotradeserver.service.domain;
 
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ class StreamDataTest {
     @DisplayName("Send Msg Test")
     void sendMsgTest() throws SocketConnectException, SocketCreateException, ExecutionException, InterruptedException {
         streamData.createSocket("wss://api.upbit.com/websocket/v1");
-        JSONObject json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"], \"isOnlyRealtime\":1}]");
+        JSONArray json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"], \"isOnlyRealtime\":1}]");
         System.out.println(json);
     }
 }

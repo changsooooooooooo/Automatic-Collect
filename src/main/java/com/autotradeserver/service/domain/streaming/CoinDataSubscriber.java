@@ -2,16 +2,16 @@ package com.autotradeserver.service.domain.streaming;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.json.JSONObject;
+import org.json.JSONArray;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
-import java.util.concurrent.Flow.*;
+import java.util.concurrent.Flow.Subscriber;
+import java.util.concurrent.Flow.Subscription;
 
 @Log4j2
 @Configuration
 @RequiredArgsConstructor
-public class CoinDataSubscriber implements Subscriber<JSONObject> {
+public class CoinDataSubscriber implements Subscriber<JSONArray> {
 
     private Subscription subscription;
 
@@ -22,7 +22,7 @@ public class CoinDataSubscriber implements Subscriber<JSONObject> {
     }
 
     @Override
-    public void onNext(JSONObject item) {
+    public void onNext(JSONArray item) {
         log.info("Current Item : {}", item);
         subscription.request(1L);
     }

@@ -4,10 +4,11 @@ import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.StreamData;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.concurrent.Flow.*;
+import java.util.concurrent.Flow.Publisher;
 
 @Configuration
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class CoinDataPublisher{
        );
     }
 
-    private Publisher<JSONObject> publishMsg(String msg){
+    private Publisher<JSONArray> publishMsg(String msg){
         return subscriber -> subscriber.onSubscribe(
                 new CoinDataSubscription(msg, streamData, subscriber)
         );

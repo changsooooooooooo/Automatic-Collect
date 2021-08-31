@@ -7,7 +7,7 @@ import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.websockets.CoinWebSocket;
 import com.neovisionaries.ws.client.WebSocketException;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONObject;
+import org.json.JSONArray;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class StreamData {
         }
     }
 
-    public JSONObject returnCurrentMsg(String msg)
+    public JSONArray returnCurrentMsg(String msg)
             throws CompletableFutureException, CompletableFutureInterruptException {
         return coinWebSocket.getRecentMessage(msg);
     }

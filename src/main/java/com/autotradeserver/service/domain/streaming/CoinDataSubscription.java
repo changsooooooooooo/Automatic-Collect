@@ -5,11 +5,12 @@ import com.autotradeserver.exceptions.CompletableFutureInterruptException;
 import com.autotradeserver.service.domain.StreamData;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Flow.*;
+import java.util.concurrent.Flow.Subscriber;
+import java.util.concurrent.Flow.Subscription;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class CoinDataSubscription implements Subscription {
 
     private final String msg;
     private final StreamData streamData;
-    private final Subscriber<? super JSONObject> subscriber;
+    private final Subscriber<? super JSONArray> subscriber;
     private static final ExecutorService es = Executors.newSingleThreadExecutor();
 
     @Override

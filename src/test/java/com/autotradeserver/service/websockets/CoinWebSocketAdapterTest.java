@@ -3,6 +3,8 @@ package com.autotradeserver.service.websockets;
 import com.autotradeserver.exceptions.CompletableFutureException;
 import com.autotradeserver.exceptions.CompletableFutureInterruptException;
 import com.neovisionaries.ws.client.WebSocketException;
+import lombok.extern.log4j.Log4j2;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +29,7 @@ class CoinWebSocketAdapterTest {
     @DisplayName("Future onBinaryMessage Test")
     void returnMsgTest() throws WebSocketException, IOException, ExecutionException, InterruptedException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        JSONObject jsonPacketArr = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
+        JSONArray jsonPacketArr = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
         System.out.println("Json Object : "+jsonPacketArr);
     }
 
@@ -35,22 +37,15 @@ class CoinWebSocketAdapterTest {
     @DisplayName("BufferTest")
     void returnCurMsg() throws WebSocketException, IOException, CompletableFutureException, CompletableFutureInterruptException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        JSONObject list = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
+        JSONArray list = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
         System.out.println(list);
     }
 
     @Test
-    @DisplayName("BufferTest")
-    void returnCurMsg2(){
-        List<Integer> x = new ArrayList<>();
-        x.add(3);
-        x.add(4);
-        List<Integer> y = new ArrayList<>();
-        y.add(1);
-        y.add(3);
-        x.addAll(y);
-        y = new ArrayList<>();
-        System.out.println(x);
+    @DisplayName("Return Condition Check TDD")
+    void returnConditionCheckTest() throws WebSocketException, IOException, CompletableFutureException, CompletableFutureInterruptException {
+        cws.createWS("wss://api.upbit.com/websocket/v1");
+        JSONArray json = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
+        System.out.println("Return Json : " + json);
     }
-
 }
