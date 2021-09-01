@@ -26,7 +26,7 @@ class CoinWebSocketTest {
 
         ExecutorService es = Executors.newSingleThreadExecutor();
         coinWebSocket.createWS("wss://api.upbit.com/websocket/v1");
-        JSONArray json = coinWebSocket.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]", 0);
+        JSONObject json = coinWebSocket.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
         System.out.println("Json Return Test : " + json);
     }
 

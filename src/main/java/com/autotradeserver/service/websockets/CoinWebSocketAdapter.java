@@ -7,13 +7,13 @@ import com.neovisionaries.ws.client.WebSocketAdapter;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Log4j2
 @Getter
@@ -21,21 +21,18 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 public class CoinWebSocketAdapter extends WebSocketAdapter {
 
-    private JSONArray jsonArr = new JSONArray();
-    private CompletableFuture<JSONArray> completableFuture;
+    private CompletableFuture<JSONObject> completableFuture;
+    private final static ExecutorService es = Executors.newCachedThreadPool();
 
     @Override
     public void onBinaryMessage(WebSocket websocket, byte[] binary){
         String text = new String(binary);
         JSONObject json = new JSONObject(text);
         log.info("Json : {}", json);
-        jsonArr = jsonArr.put(json);
-        log.info("Current JsonArr Length : {}", jsonArr.length());
-        completableFuture.complete(jsonArr);
+        completableFuture.complete(json);
     }
 
-    public JSONArray returnCurrentJson(int strIdx) throws CompletableFutureException, CompletableFutureInterruptException {
-        makeSubJsonArr(strIdx);
+    public JSONObject returnCurrentJson() throws CompletableFutureException, CompletableFutureInterruptException {
         completableFuture = new CompletableFuture<>();
         try {
             return completableFuture.get();
@@ -44,12 +41,5 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
         } catch (ExecutionException e) {
             throw new CompletableFutureException("Future Exception!", e.getCause());
         }
-    }
-
-    public void makeSubJsonArr(int strIdx){
-        log.info("StartIdx : {}, JsonLength : {}", strIdx, jsonArr.length());
-        List<Object> jsonList = jsonArr.toList()
-                .subList(strIdx, jsonArr.length());
-        jsonArr = new JSONArray(jsonList);
     }
 }

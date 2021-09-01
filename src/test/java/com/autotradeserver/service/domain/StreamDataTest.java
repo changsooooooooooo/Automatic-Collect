@@ -29,7 +29,7 @@ class StreamDataTest {
     @DisplayName("Send Msg Test")
     void sendMsgTest() throws SocketConnectException, SocketCreateException, ExecutionException, InterruptedException {
         streamData.createSocket("wss://api.upbit.com/websocket/v1");
-        JSONArray json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"], \"isOnlyRealtime\":1}]");
+        JSONObject json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"], \"isOnlyRealtime\":1}]");
         System.out.println(json);
     }
 }

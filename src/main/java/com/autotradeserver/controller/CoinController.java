@@ -34,6 +34,6 @@ public class CoinController {
             throws SocketConnectException, SocketCreateException {
         String url = config.getValue("coin.url");
         coinDataPublisher.makeSubscriptionObj(url);
-        coinDataPublisher.subscribe("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
+        coinDataPublisher.subscribe("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlySnapshot\":1}]");
     }
 }

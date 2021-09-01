@@ -4,6 +4,7 @@ import com.autotradeserver.dto.startIdx.StartIdx;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.Flow.Subscriber;
@@ -12,10 +13,9 @@ import java.util.concurrent.Flow.Subscription;
 @Log4j2
 @Configuration
 @RequiredArgsConstructor
-public class CoinDataSubscriber implements Subscriber<JSONArray> {
+public class CoinDataSubscriber implements Subscriber<JSONObject> {
 
     private Subscription subscription;
-    private final StartIdx startIdx;
 
     @Override
     public void onSubscribe(final Subscription subscription) {
@@ -24,11 +24,8 @@ public class CoinDataSubscriber implements Subscriber<JSONArray> {
     }
 
     @Override
-    public void onNext(final JSONArray item) {
+    public void onNext(final JSONObject item) {
         log.info("Item : {}", item);
-        log.info("Before Idx : {}", startIdx.curIdx());
-        startIdx.changeStartIdx(item.length());
-        log.info("After Idx : {}", startIdx.curIdx());
         subscription.request(1L);
     }
 

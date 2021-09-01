@@ -1,7 +1,6 @@
 package com.autotradeserver.controller;
 
-import com.autotradeserver.config.Configs;
-import com.autotradeserver.service.domain.StreamData;
+import com.autotradeserver.service.domain.streaming.CoinDataPublisher;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,6 @@ class CoinControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private StreamData streamData;
 
     @Test
     @DisplayName("Web MVC Test")

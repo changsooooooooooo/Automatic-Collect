@@ -7,6 +7,7 @@ import com.autotradeserver.service.domain.StreamData;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,19 +19,17 @@ import java.util.concurrent.Flow.Subscription;
 public class CoinDataSubscription implements Subscription {
 
     private final String msg;
-    private final StartIdx startIdx;
     private final StreamData streamData;
-    private final Subscriber<? super JSONArray> subscriber;
+    private final Subscriber<? super JSONObject> subscriber;
     private static final ExecutorService es = Executors.newSingleThreadExecutor();
 
     @Override
     public void request(final long n){
-        int idx = startIdx.curIdx();
         es.submit(
                 () -> {
                     try {
                         subscriber.onNext(
-                                streamData.returnCurrentMsg(msg, idx)
+                                streamData.returnCurrentMsg(msg)
                         );
                     } catch (CompletableFutureException e) {
                         e.printStackTrace();

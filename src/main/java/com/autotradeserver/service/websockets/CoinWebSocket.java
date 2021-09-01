@@ -7,7 +7,7 @@ import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketExtension;
 import com.neovisionaries.ws.client.WebSocketFactory;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -33,9 +33,9 @@ public class CoinWebSocket {
         ws.sendText(msg);
     }
 
-    public JSONArray getRecentMessage(final String msg, final int strIdx)
+    public JSONObject getRecentMessage(final String msg)
             throws CompletableFutureException, CompletableFutureInterruptException {
         sendMessage(msg);
-        return coinWebSocketAdapter.returnCurrentJson(strIdx);
+        return coinWebSocketAdapter.returnCurrentJson();
     }
 }

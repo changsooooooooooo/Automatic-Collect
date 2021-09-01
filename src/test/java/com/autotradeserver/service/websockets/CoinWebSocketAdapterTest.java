@@ -30,7 +30,7 @@ class CoinWebSocketAdapterTest {
     @DisplayName("Future onBinaryMessage Test")
     void returnMsgTest() throws WebSocketException, IOException, ExecutionException, InterruptedException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        JSONArray jsonPacketArr = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]", 0);
+        JSONObject jsonPacketArr = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
         System.out.println("Json Object : "+jsonPacketArr);
     }
 
@@ -38,16 +38,17 @@ class CoinWebSocketAdapterTest {
     @DisplayName("BufferTest")
     void returnCurMsg() throws WebSocketException, IOException, CompletableFutureException, CompletableFutureInterruptException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]", 0);
+        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
     }
 
     @Test
     @DisplayName("Return Condition Check TDD")
     void returnConditionCheckTest() throws WebSocketException, IOException, CompletableFutureException, CompletableFutureInterruptException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        JSONArray json = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]", 0);
-        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]", 0);
-        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]", 0);
+        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
+        for(int i = 0; i<1000; i++){
+            cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
+        }
         System.out.println("Return Json : " + coinWebSocketAdapter.getJsonArr().length());
     }
 }

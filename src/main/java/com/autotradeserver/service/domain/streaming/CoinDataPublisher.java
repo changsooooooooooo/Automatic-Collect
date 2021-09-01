@@ -5,7 +5,7 @@ import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.StreamData;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.Flow.Publisher;
@@ -14,9 +14,8 @@ import java.util.concurrent.Flow.Publisher;
 @RequiredArgsConstructor
 public class CoinDataPublisher{
 
-    private final StartIdx startIdx;
     private final StreamData streamData;
-//    private final CoinDataSubscriber coinDataSubscriber;
+    private final CoinDataSubscriber coinDataSubscriber;
 
     public void makeSubscriptionObj(final String url)
             throws SocketConnectException, SocketCreateException {
@@ -25,13 +24,13 @@ public class CoinDataPublisher{
 
     public void subscribe(final String msg){
        publishMsg(msg).subscribe(
-               new CoinDataSubscriber(startIdx)
+               coinDataSubscriber
        );
     }
 
-    private Publisher<JSONArray> publishMsg(final String msg){
+    private Publisher<JSONObject> publishMsg(final String msg){
         return subscriber -> subscriber.onSubscribe(
-                new CoinDataSubscription(msg, startIdx, streamData, subscriber)
+                new CoinDataSubscription(msg, streamData, subscriber)
         );
     }
 }
