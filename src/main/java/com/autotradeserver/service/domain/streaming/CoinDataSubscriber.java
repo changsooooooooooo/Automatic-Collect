@@ -1,9 +1,7 @@
 package com.autotradeserver.service.domain.streaming;
 
-import com.autotradeserver.dto.startIdx.StartIdx;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
 

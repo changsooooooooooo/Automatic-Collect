@@ -49,6 +49,5 @@ class CoinWebSocketAdapterTest {
         for(int i = 0; i<1000; i++){
             cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
         }
-        System.out.println("Return Json : " + coinWebSocketAdapter.getJsonArr().length());
     }
 }
