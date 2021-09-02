@@ -5,6 +5,8 @@ import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 
@@ -13,7 +15,9 @@ import java.util.concurrent.Flow.Subscription;
 @RequiredArgsConstructor
 public class CoinDataSubscriber implements Subscriber<JSONObject> {
 
+    private JSONObject jsonItem;
     private Subscription subscription;
+    private CompletableFuture<JSONObject> completableFuture;
 
     @Override
     public void onSubscribe(final Subscription subscription) {
@@ -23,7 +27,9 @@ public class CoinDataSubscriber implements Subscriber<JSONObject> {
 
     @Override
     public void onNext(final JSONObject item) {
-        log.info("Item : {}", item);
+        log.info("Current Item : {}", item);
+        jsonItem = item;
+        completableFuture.complete(jsonItem);
         subscription.request(1L);
     }
 
@@ -35,5 +41,10 @@ public class CoinDataSubscriber implements Subscriber<JSONObject> {
     @Override
     public void onComplete() {
         log.info("Complete {}", "Done Passing");
+    }
+
+    public JSONObject sendToClient() throws ExecutionException, InterruptedException {
+        completableFuture = new CompletableFuture<>();
+        return completableFuture.get();
     }
 }

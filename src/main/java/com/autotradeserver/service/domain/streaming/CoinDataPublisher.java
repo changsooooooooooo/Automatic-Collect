@@ -1,6 +1,5 @@
 package com.autotradeserver.service.domain.streaming;
 
-import com.autotradeserver.dto.startIdx.StartIdx;
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.StreamData;
@@ -8,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Flow.Publisher;
 
 @Configuration
@@ -32,5 +32,9 @@ public class CoinDataPublisher{
         return subscriber -> subscriber.onSubscribe(
                 new CoinDataSubscription(msg, streamData, subscriber)
         );
+    }
+
+    public JSONObject sendStreamData() throws ExecutionException, InterruptedException {
+        return coinDataSubscriber.sendToClient();
     }
 }
