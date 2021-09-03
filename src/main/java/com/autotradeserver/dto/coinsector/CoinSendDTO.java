@@ -9,7 +9,7 @@ import java.io.*;
 
 @Configuration
 @RequiredArgsConstructor
-public class CoinDTO {
+public class CoinSendDTO {
 
     private CoinsSector coinsSector;
     private final Configs configs;
