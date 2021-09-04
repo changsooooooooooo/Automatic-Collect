@@ -17,11 +17,15 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 @EnableElasticsearchRepositories(basePackages = "com.autotradeserver.repository")
 public class ElasticConfiguration {
 
+    private final Configs config;
+
     @Bean
     public RestHighLevelClient client() {
+        String host = config.getValue("elasticsearch.host");
+
         ClientConfiguration clientConfiguration
                 = ClientConfiguration.builder()
-                .connectedTo("localhost:9200")
+                .connectedTo(host)
                 .build();
 
         return RestClients.create(clientConfiguration).rest();

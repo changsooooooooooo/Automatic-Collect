@@ -1,6 +1,5 @@
 package com.autotradeserver.service.domain.streaming;
 
-import com.autotradeserver.dto.startIdx.StartIdx;
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.StreamData;
@@ -12,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class CoinDataPublisherTest {
 
-    @Autowired
-    private StartIdx strIdx;
     @Autowired
     private StreamData streamData;
     @Autowired

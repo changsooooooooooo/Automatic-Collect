@@ -1,7 +1,6 @@
 package com.autotradeserver.dto.coinsector;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -9,9 +8,8 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.Date;
 
-@Setter
-@Document(indexName = "trade")
-public class CoinDataDTO {
+@Document(indexName = "coin_trade")
+public class CoinTradeDTO {
 
     @Id
     @JsonProperty("trade_timestamp")

@@ -33,14 +33,14 @@ class CoinWebSocketAdapterTest {
     @DisplayName("BufferTest")
     void returnCurMsg() throws WebSocketException, IOException, CompletableFutureException, CompletableFutureInterruptException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
+        JSONObject jsonPacketArr = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-POLY\"], \"isOnlyRealtime\":1}]");
     }
 
     @Test
     @DisplayName("Return Condition Check TDD")
     void returnConditionCheckTest() throws WebSocketException, IOException, CompletableFutureException, CompletableFutureInterruptException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
+        cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"orderbook\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
         for(int i = 0; i<1000; i++){
             cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
         }

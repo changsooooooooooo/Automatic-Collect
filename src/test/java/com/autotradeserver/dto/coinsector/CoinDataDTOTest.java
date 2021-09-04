@@ -1,6 +1,6 @@
 package com.autotradeserver.dto.coinsector;
 
-import com.autotradeserver.repository.CoinRepository;
+import com.autotradeserver.repository.CoinTradeRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,7 +15,7 @@ import java.util.Date;
 class CoinDataDTOTest {
 
     @Resource
-    private CoinRepository coinRepository;
+    private CoinTradeRepository coinRepository;
 
     @Test
     void insertToElastic() throws JsonProcessingException {
@@ -28,7 +27,7 @@ class CoinDataDTOTest {
         json.put("current_time", format1.format(new Date(time)));
         ObjectMapper mapper = new ObjectMapper();
 
-        CoinDataDTO coin = mapper.readValue(json.toString(), CoinDataDTO.class);
+        CoinTradeDTO coin = mapper.readValue(json.toString(), CoinTradeDTO.class);
         coinRepository.save(coin);
 
     }

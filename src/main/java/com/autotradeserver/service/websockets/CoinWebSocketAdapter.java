@@ -1,10 +1,9 @@
 package com.autotradeserver.service.websockets;
 
-import com.autotradeserver.dto.coinsector.CoinDataDTO;
+import com.autotradeserver.dto.coinsector.CoinTradeDTO;
 import com.autotradeserver.exceptions.CompletableFutureException;
 import com.autotradeserver.exceptions.CompletableFutureInterruptException;
-import com.autotradeserver.repository.CoinRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.autotradeserver.repository.CoinTradeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
@@ -13,9 +12,7 @@ import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -24,20 +21,16 @@ import java.util.concurrent.ExecutionException;
 @RequiredArgsConstructor
 public class CoinWebSocketAdapter extends WebSocketAdapter {
 
-    private CoinDataDTO coinDataDTO;
+    private CoinTradeDTO coinDataDTO;
     private CompletableFuture<JSONObject> completableFuture;
-    private final CoinRepository coinRepository;
+    private final CoinTradeRepository coinRepository;
     private final static ObjectMapper objectMapper = new ObjectMapper();
     private final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 
     @Override
-    public void onBinaryMessage(WebSocket websocket, byte[] binary) throws JsonProcessingException {
+    public void onBinaryMessage(WebSocket websocket, byte[] binary) {
         String text = new String(binary);
         JSONObject json = new JSONObject(text);
-        Long time = json.getLong("timestamp");
-        json.put("current_time", dateFormat.format(new Date(time)));
-        coinDataDTO = objectMapper.readValue(json.toString(), CoinDataDTO.class);
-        coinRepository.save(coinDataDTO);
         log.info("Real Json : {}", json);
         completableFuture.complete(json);
     }
