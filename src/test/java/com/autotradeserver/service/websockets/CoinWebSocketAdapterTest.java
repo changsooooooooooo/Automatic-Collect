@@ -45,6 +45,7 @@ class CoinWebSocketAdapterTest {
         CompletableFuture future = jsonList.stream()
                 .map(msg -> CompletableFuture.supplyAsync(
                         ()->
+
                 ))
                 .collect(Collectors.toList());
 
