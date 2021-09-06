@@ -31,7 +31,7 @@ class StreamDataTest {
 
     @Test
     @DisplayName("Send Msg Test")
-    void sendMsgTest() throws SocketConnectException, SocketCreateException, ExecutionException, InterruptedException {
+    void sendMsgTest() throws SocketConnectException, SocketCreateException{
         streamData.createSocket("wss://api.upbit.com/websocket/v1");
         JSONObject json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"], \"isOnlyRealtime\":1}]");
         System.out.println(json);
@@ -39,21 +39,19 @@ class StreamDataTest {
 
     @Test
     @DisplayName("Send Non-Blocking Test")
-    void sendNonBlockingTest() throws SocketConnectException, SocketCreateException, CompletableFutureException, CompletableFutureInterruptException {
+    void sendNonBlockingTest() throws SocketConnectException, SocketCreateException{
         streamData.createSocket("wss://api.upbit.com/websocket/v1");
 
         List<String> jsonList = new ArrayList<>();
-        jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-POLY\"], \"isOnlySnapshot\":1}]");
-        jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlySnapshot\":1}]");
+        jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-POLY\"], \"isOnlyRealtime\":1}]");
+        jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
 
-        List<CompletableFuture<JSONObject>> x = jsonList.stream()
-                .map(msg-> CompletableFuture.supplyAsync(
-                        ()-> streamData.returnCurrentMsg(msg)
-                ))
+        List<JSONObject> x = jsonList.stream()
+                .map(msg-> streamData.returnCurrentMsg(msg))
                 .collect(Collectors.toList());
 
-        x.stream()
-                .map(future->future.join())
-                .forEach(json-> System.out.println(json));
+        for(JSONObject json : x){
+            System.out.println(json);
+        }
     }
 }

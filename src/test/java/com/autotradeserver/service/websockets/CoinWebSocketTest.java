@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -21,11 +20,11 @@ class CoinWebSocketTest {
 
     @Test
     @DisplayName("Return Recent Value Test")
-    void returnRecentValue() throws WebSocketException, IOException, ExecutionException, InterruptedException {
+    void returnRecentValue() throws WebSocketException, IOException {
 
         ExecutorService es = Executors.newSingleThreadExecutor();
         coinWebSocket.createWS("wss://api.upbit.com/websocket/v1");
-        JSONObject json = coinWebSocket.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
+        JSONObject json = coinWebSocket.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
         System.out.println("Json Return Test : " + json);
     }
 

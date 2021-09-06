@@ -1,7 +1,5 @@
 package com.autotradeserver.service.websockets;
 
-import com.autotradeserver.exceptions.CompletableFutureException;
-import com.autotradeserver.exceptions.CompletableFutureInterruptException;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketExtension;

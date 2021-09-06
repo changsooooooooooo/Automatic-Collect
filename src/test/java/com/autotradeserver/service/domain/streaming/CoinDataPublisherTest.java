@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
 @SpringBootTest
 class CoinDataPublisherTest {
 
@@ -20,8 +24,28 @@ class CoinDataPublisherTest {
     @DisplayName("CoinDataPublish Test")
     void publishAbleTest() throws SocketConnectException, SocketCreateException {
         coinDataPublisher.makeSubscriptionObj("wss://api.upbit.com/websocket/v1");
-        for(int i = 0; i<100; i++){
-            coinDataPublisher.subscribe("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
-        }
+        List<String> msgList = new ArrayList<>();
+
+        String msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-POLY\"], \"isOnlyRealtime\":1}]";
+        msgList.add(msg);
+        msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]";
+        msgList.add(msg);
+        msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"], \"isOnlyRealtime\":1}]";
+        msgList.add(msg);
+        msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-EOS\"], \"isOnlyRealtime\":1}]";
+        msgList.add(msg);
+        msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-THETA\"], \"isOnlyRealtime\":1}]";
+        msgList.add(msg);
+        msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-NEO\"], \"isOnlyRealtime\":1}]";
+        msgList.add(msg);
+        msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-WAVES\"], \"isOnlyRealtime\":1}]";
+        msgList.add(msg);
+        msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-XLM\"], \"isOnlyRealtime\":1}]";
+        msgList.add(msg);
+        msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-TRX\"], \"isOnlyRealtime\":1}]";
+        msgList.add(msg);
+
+        coinDataPublisher.subscribe(msgList.get(0));
+
     }
 }
