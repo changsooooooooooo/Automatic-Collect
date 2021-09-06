@@ -12,9 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.Observable;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
 @SpringBootTest
 class CoinWebSocketAdapterTest {
@@ -41,14 +40,6 @@ class CoinWebSocketAdapterTest {
         List<String> jsonList = new ArrayList<>();
         jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-POLY\"], \"isOnlyRealtime\":1}]");
         jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
-
-        CompletableFuture future = jsonList.stream()
-                .map(msg -> CompletableFuture.supplyAsync(
-                        ()->
-
-                ))
-                .collect(Collectors.toList());
-
     }
 
     @Test

@@ -29,8 +29,7 @@ public class StreamData {
         }
     }
 
-    public JSONObject returnCurrentMsg(final String msg)
-            throws CompletableFutureException, CompletableFutureInterruptException {
+    public JSONObject returnCurrentMsg(final String msg) {
         return coinWebSocket.getRecentMessage(msg);
     }
 }

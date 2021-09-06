@@ -23,15 +23,7 @@ public class CoinDataSubscription implements Subscription {
     @Override
     public void request(final long n){
         es.submit(
-                () -> {
-                    try {
-                        subscriber.onNext(streamData.returnCurrentMsg(msg));
-                    } catch (CompletableFutureException e) {
-                        e.printStackTrace();
-                    } catch (CompletableFutureInterruptException e) {
-                        e.printStackTrace();
-                    }
-                }
+                () -> subscriber.onNext(streamData.returnCurrentMsg(msg))
         );
     }
 

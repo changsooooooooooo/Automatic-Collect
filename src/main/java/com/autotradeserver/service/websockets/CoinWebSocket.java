@@ -35,8 +35,7 @@ public class CoinWebSocket {
         ws.sendText(msg);
     }
 
-    public JSONObject getRecentMessage(final String msg)
-            throws CompletableFutureException, CompletableFutureInterruptException {
+    public JSONObject getRecentMessage(final String msg) {
         sendMessage(msg);
         return coinWebSocketAdapter.returnCurrentJson();
     }

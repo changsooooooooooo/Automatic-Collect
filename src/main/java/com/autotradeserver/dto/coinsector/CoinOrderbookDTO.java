@@ -1,6 +1,7 @@
 package com.autotradeserver.dto.coinsector;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jdk.jfr.Timestamp;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -14,6 +15,7 @@ public class CoinOrderbookDTO {
 
     @Id
     @JsonProperty("timestamp")
+    @Timestamp
     @Field(type= FieldType.Long, name="timestamp")
     private Date tms;
 
@@ -41,6 +43,7 @@ public class CoinOrderbookDTO {
     @Field(type=FieldType.Object, name="orderbook_units")
     private List<CoinOrders> obu;
 
+    @Timestamp
     @JsonProperty("current_time")
     @Field(type=FieldType.Date, name="current_time")
     private Date currentTime;

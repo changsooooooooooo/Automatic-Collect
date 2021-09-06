@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 @Log4j2
 @Service
@@ -35,14 +34,8 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
         completableFuture.complete(json);
     }
 
-    public JSONObject returnCurrentJson() throws CompletableFutureException, CompletableFutureInterruptException {
+    public JSONObject returnCurrentJson() {
         completableFuture = new CompletableFuture<>();
-        try {
-            return completableFuture.get();
-        } catch (InterruptedException e) {
-            throw new CompletableFutureInterruptException("Future Interrupted!");
-        } catch (ExecutionException e) {
-            throw new CompletableFutureException("Future Exception!", e.getCause());
-        }
+        return completableFuture.join();
     }
 }
