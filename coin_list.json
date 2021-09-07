@@ -1,38 +1,9 @@
 {
-  "bitcoin" : [
-    "KRW-BTC", "KRW-BCH", "KRW-BTG", "KRW-LTC"
+  "coin" : [
+    "KRW-BTC","KRW-BCH","KRW-BTG","KRW-LTC","KRW-ETC","KRW-ETH","KRW-ADA","KRW-SAND","KRW-XRP","KRW-XLM","KRW-ETH","KRW-TRX","KRW-DOT","KRW-LINK","KRW-WAVES","KRW-JST","KRW-SXP",
+    "KRW-META","KRW-ICX","KRW-ONT","KRW-MED","KRW-HUM","KRW-THETA","KRW-CHZ","KRW-ENJ","KRW-FLOW","KRW-WAXP","KRW-MANA","KRW-EOS","KRW-WAVES","KRW-LSK","KRW-ARK","KRW-IOTA","KRW-IOST","KRW-XEM","KRW-STRAX","KRW-XTZ",
+    "KRW-OMG","KRW-SC","KRW-GLM","KRW-POWR","KRW-CVC","KRW-REP","KRW-WAX","KRW-LINK","KRW-SBD","KRW-ANKR","KRW-PUNDIX","KRW-MVL","KRW-MLK","KRW-ICX","KRW-MED","KRW-NEO","KRW-TRX","KRW-ONT","KRW-ELF","KRW-VET"
   ],
-  "ethereum": [
-    "KRW-ETC", "KRW-ETH", "KRW-ADA", "KRW-SAND"
-  ],
-  "ripple": [
-    "KRW-XRP", "KRW-XLM"
-  ],
-  "defi": [
-    "KRW-ETH", "KRW-TRX", "KRW-DOT", "KRW-LINK", "KRW-WAVES", "KRW-JST", "KRW-SXP"
-  ],
-  "did": [
-    "KRW-META", "KRW-ICX", "KRW-ONT", "KRW-MED", "KRW-HUM"
-  ],
-  "nft": [
-    "KRW-THETA", "KRW-CHZ", "KRW-ENJ", "KRW-FLOW", "KRW-WAXP", "KRW-MANA"
-  ],
-  "platform": [
-    "KRW-EOS", "KRW-WAVES", "KRW-LSK", "KRW-ARK", "KRW-IOTA", "KRW-IOST", "KRW-XEM", "KRW-STRAX", "KRW-XTZ"
-  ],
-  "utility": [
-    "KRW-OMG", "KRW-SC", "KRW-GLM", "KRW-POWR", "KRW-CVC", "KRW-REP", "KRW-WAX", "KRW-LINK"
-  ],
-  "stable" : [
-    "KRW-SBD", "KRW-ANKR"
-  ],
-  "payment" : [
-    "KRW-PUNDIX"
-  ],
-  "korea" : [
-    "KRW-MVL", "KRW-MLK", "KRW-ICX", "KRW-MED"
-  ],
-  "china" : [
-    "KRW-NEO", "KRW-TRX", "KRW-ONT", "KRW-ELF", "KRW-VET"
-  ]
+  "message_ticket": "{\"ticket\":\"test\"}",
+  "message_body": "{\"type\":null,\"codes\":null, \"isOnlyRealtime\":1}"
 }

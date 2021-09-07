@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.concurrent.ExecutionException;
 
 @SpringBootTest
 class CoinDataPublisherTest {
@@ -22,7 +22,7 @@ class CoinDataPublisherTest {
 
     @Test
     @DisplayName("CoinDataPublish Test")
-    void publishAbleTest() throws SocketConnectException, SocketCreateException {
+    void publishAbleTest() throws SocketConnectException, SocketCreateException, ExecutionException, InterruptedException {
         coinDataPublisher.makeSubscriptionObj("wss://api.upbit.com/websocket/v1");
         List<String> msgList = new ArrayList<>();
 
@@ -44,8 +44,5 @@ class CoinDataPublisherTest {
         msgList.add(msg);
         msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-TRX\"], \"isOnlyRealtime\":1}]";
         msgList.add(msg);
-
-        coinDataPublisher.subscribe(msgList.get(0));
-
     }
 }

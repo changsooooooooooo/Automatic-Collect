@@ -1,7 +1,5 @@
 package com.autotradeserver.service.domain;
 
-import com.autotradeserver.exceptions.CompletableFutureException;
-import com.autotradeserver.exceptions.CompletableFutureInterruptException;
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import org.json.JSONObject;
@@ -12,8 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -45,9 +41,15 @@ class StreamDataTest {
         List<String> jsonList = new ArrayList<>();
         jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-POLY\"], \"isOnlyRealtime\":1}]");
         jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
+        jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"], \"isOnlyRealtime\":1}]");
+        jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-THETA\"], \"isOnlyRealtime\":1}]");
+        jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-WAVES\"], \"isOnlyRealtime\":1}]");
+        jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-NEO\"], \"isOnlyRealtime\":1}]");
+        jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-EOS\"], \"isOnlyRealtime\":1}]");
+        jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-XLM\"], \"isOnlyRealtime\":1}]");
 
         List<JSONObject> x = jsonList.stream()
-                .map(msg-> streamData.returnCurrentMsg(msg))
+                .map(msg -> streamData.returnCurrentMsg(msg))
                 .collect(Collectors.toList());
 
         for(JSONObject json : x){
