@@ -34,15 +34,8 @@ public class CoinController {
     }
 
     @GetMapping("/trade")
-    public String streamCoinInfo()
-            throws SocketConnectException, IOException, ExecutionException, InterruptedException {
+    public String streamCoinInfo() {
         String url = config.getValue("coin.url");
-        coinSendDTO.makeJsonObj();
-        String message = coinSendDTO.returnSendMsg("ticker");
-        coinDataPublisher.makeSubscriptionObj(url);
-        coinDataPublisher.subscribe(message);
-        return coinDataPublisher
-                .sendStreamData()
-                .toString();
+        return "";
     }
 }
