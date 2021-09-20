@@ -158,5 +158,4 @@ public class CoinTradeDTO {
     @JsonProperty("current_time")
     @Field(type=FieldType.Date, name="current_time")
     private Date currentTime;
-
 }

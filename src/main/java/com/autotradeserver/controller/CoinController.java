@@ -2,8 +2,6 @@ package com.autotradeserver.controller;
 
 import com.autotradeserver.config.Configs;
 import com.autotradeserver.dto.coinsector.CoinSendDTO;
-import com.autotradeserver.dto.coinsector.CoinsSector;
-import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.service.domain.streaming.CoinDataPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -12,9 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 @Log4j2
 @RestController
