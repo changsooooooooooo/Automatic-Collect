@@ -25,6 +25,15 @@ class AWSS3ConfigTest {
 
     @Test
     void listBuckets(){
-
+        amazonS3 = AmazonS3ClientBuilder
+                .standard()
+                .withRegion(Regions.AP_NORTHEAST_2)
+                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("access-key", "secret-key")))
+                .build();
+        List<Bucket> buckets = amazonS3.listBuckets();
+        String bucketName = buckets.get(0).getName();
+        amazonS3.putObject(
+          bucketName, "s3-path", new File("file-path")
+        );
     }
 }
