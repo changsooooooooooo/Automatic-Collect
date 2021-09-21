@@ -21,14 +21,14 @@ class StreamDataTest {
     @Test
     @DisplayName("Create StreamData Test")
     void testConstructorTest() throws SocketConnectException, SocketCreateException {
-        streamData.createSocket("wss://api.upbit.com/websocket/v1", "korea");
+        streamData.createSocket("wss://api.upbit.com/websocket/v1");
         System.out.println(streamData);
     }
 
     @Test
     @DisplayName("Send Msg Test")
     void sendMsgTest() throws SocketConnectException, SocketCreateException{
-        streamData.createSocket("wss://api.upbit.com/websocket/v1", "china");
+        streamData.createSocket("wss://api.upbit.com/websocket/v1");
         JSONObject json = streamData.returnCurrentMsg("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-ETH\"], \"isOnlyRealtime\":1}]");
         System.out.println(json);
     }
@@ -36,7 +36,7 @@ class StreamDataTest {
     @Test
     @DisplayName("Send Non-Blocking Test")
     void sendNonBlockingTest() throws SocketConnectException, SocketCreateException{
-        streamData.createSocket("wss://api.upbit.com/websocket/v1", "ripple");
+        streamData.createSocket("wss://api.upbit.com/websocket/v1");
 
         List<String> jsonList = new ArrayList<>();
         jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-POLY\"], \"isOnlyRealtime\":1}]");

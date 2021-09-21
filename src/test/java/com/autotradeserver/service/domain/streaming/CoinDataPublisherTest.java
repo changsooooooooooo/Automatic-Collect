@@ -23,7 +23,7 @@ class CoinDataPublisherTest {
     @Test
     @DisplayName("CoinDataPublish Test")
     void publishAbleTest() throws SocketConnectException, SocketCreateException, ExecutionException, InterruptedException {
-        coinDataPublisher.makeSubscriptionObj("wss://api.upbit.com/websocket/v1", "nft");
+        coinDataPublisher.makeSubscriptionObj("wss://api.upbit.com/websocket/v1");
         List<String> msgList = new ArrayList<>();
 
         String msg = "[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-POLY\"], \"isOnlyRealtime\":1}]";
