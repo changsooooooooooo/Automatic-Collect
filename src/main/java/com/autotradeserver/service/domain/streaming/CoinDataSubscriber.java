@@ -6,14 +6,14 @@ import com.autotradeserver.repository.CoinDBRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Flow.Subscriber;
-import java.util.concurrent.Flow.Subscription;
 
 @Log4j2
 @Configuration
@@ -59,7 +59,6 @@ public class CoinDataSubscriber implements Subscriber<JSONObject> {
 
     public void accumulateToS3(final JSONObject item){
         AmazonS3 s3 = awss3Config.amazonS3();
-        log.info("s3Obj : {}", s3.toString());
         int now = LocalDateTime
                 .now()
                 .getHour();

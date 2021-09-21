@@ -16,7 +16,7 @@ class CoinDBRepositoryTest {
 
     @Test
     void testQuery(){
-        List<String> candidate = coinDBRepository.findCoinCadidatesByTheme("bitcoin");
+        List<String> candidate = coinDBRepository.findCoinCadidatesByTheme("korea");
         candidate.stream()
                 .forEach(x-> System.out.println(x));
     }

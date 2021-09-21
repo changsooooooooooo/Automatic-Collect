@@ -5,10 +5,11 @@ import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.StreamData;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Flow.Publisher;
 
 @Configuration
 @RequiredArgsConstructor
