@@ -1,26 +1,45 @@
 package com.autotradeserver.dto.coinsector;
 
-import com.autotradeserver.config.Configs;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.autotradeserver.repository.CoinDBRepository;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
 public class CoinSendDTO {
 
-    private CoinsSector coinsSector;
-    private final Configs configs;
-    private final ObjectMapper objectMapper;
+    private final CoinDBRepository coinDBRepository;
 
-    public void makeJsonObj() throws IOException {
-        String path = configs.getValue("coin.sector.path");
-        FileInputStream fr = new FileInputStream(path);
-        BufferedInputStream reader = new BufferedInputStream(fr);
-        coinsSector = objectMapper.readValue(reader, CoinsSector.class);
+    @Value("${coin.msg.ticket}")
+    private JSONObject ticket;
+
+    @Value("${coin.msg.body}")
+    private JSONObject body;
+
+    @Value("${coin.msg.format}")
+    private JSONObject format;
+
+    public JSONArray makeJsonArray(String candidate){
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.put(ticket);
+        body.put("codes", List.of(candidate));
+        jsonArray.put(body);
+        jsonArray.put(format);
+        return jsonArray;
+    }
+
+    public List<JSONArray> makeMsgList(String theme) {
+        List<JSONArray> msgList = new ArrayList<>();
+        List<String> candidates = coinDBRepository.findCoinCadidatesByTheme(theme);
+        for(String candidate : candidates){
+            msgList.add(makeJsonArray(candidate));
+        }
+        return msgList;
     }
 }
