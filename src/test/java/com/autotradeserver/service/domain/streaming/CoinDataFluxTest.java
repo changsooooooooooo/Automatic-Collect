@@ -1,14 +1,15 @@
 package com.autotradeserver.service.domain.streaming;
 
 import com.autotradeserver.dto.coinsector.CoinSendDTO;
-import com.autotradeserver.repository.CoinDBRepository;
+import com.autotradeserver.exceptions.SocketConnectException;
+import com.autotradeserver.exceptions.SocketCreateException;
 import org.json.JSONArray;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import reactor.core.publisher.Flux;
+import org.springframework.context.ApplicationContext;
 
-import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -21,13 +22,14 @@ class CoinDataFluxTest {
     private CoinSendDTO coinSendDTO;
 
     @Test
-    void fluxFromTest(){
-        List<JSONArray> msgJsonList = coinSendDTO.makeMsgList("korea");
-        msgJsonList.stream()
-                .forEach(x-> System.out.println(x.toString()));
-        Flux<JSONArray> fluxMsg = Flux.fromIterable(msgJsonList);
-        Duration period = Duration.ofMillis(1000/msgJsonList.size());
-        fluxMsg.subscribe(x-> System.out.println(x));
+    void newPublisherTest() throws SocketConnectException, SocketCreateException {
+        List<CoinDataPublisher> publisherList = new ArrayList<>();
+        for(int i = 0; i<4; i++){
+            coinDataPublisher.makeSubscriptionObj("wss://api.upbit.com/websocket/v1");
+            publisherList.add(coinDataPublisher);
+        }
+        publisherList.stream()
+                .forEach(x-> System.out.println(x));
     }
 
 }

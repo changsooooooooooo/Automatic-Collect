@@ -3,6 +3,7 @@ package com.autotradeserver.service.websockets;
 import com.autotradeserver.exceptions.CompletableFutureException;
 import com.autotradeserver.exceptions.CompletableFutureInterruptException;
 import com.neovisionaries.ws.client.WebSocketException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ class CoinWebSocketAdapterTest {
     @DisplayName("Future onBinaryMessage Test")
     void returnMsgTest() throws WebSocketException, IOException, ExecutionException, InterruptedException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        JSONObject jsonPacketArr = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"]}]");
+        JSONObject jsonPacketArr = cws.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BCHA\"]}]");
         System.out.println("Json Object : "+jsonPacketArr);
     }
 
@@ -45,6 +46,6 @@ class CoinWebSocketAdapterTest {
     @DisplayName("Return Condition Check TDD")
     void returnConditionCheckTest() throws WebSocketException, IOException, CompletableFutureException, CompletableFutureInterruptException {
         cws.createWS("wss://api.upbit.com/websocket/v1");
-        cws.getRecentMessage("[{\"ticket\":\"ticket\"},{\"codes\":[\"KRW-LTC\"],\"isOnlySnapshot\":1,\"type\":\"trade\"},{\"format\":\"SIMPLE\"}]");
+        cws.getRecentMessage("[{\"ticket\":\"ticket\"},{\"codes\":[\"KRW-BCHA\"],\"isOnlyRealtime\":1,\"type\":\"trade\"},{\"format\":\"SIMPLE\"}]");
     }
 }

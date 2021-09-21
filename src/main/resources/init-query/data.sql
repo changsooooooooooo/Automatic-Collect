@@ -56,6 +56,8 @@ values
 ('KRW-TRX', 'china'),
 ('KRW-ONT', 'china'),
 ('KRW-VET', 'china'),
-('KRW-ELF', 'china');
+('KRW-ELF', 'china'),
+('KRW-XTZ', 'user-comb'),
+('KRW-ELF', 'user-comb');
 
 commit;

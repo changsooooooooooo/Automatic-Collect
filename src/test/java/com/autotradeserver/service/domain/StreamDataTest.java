@@ -2,6 +2,7 @@ package com.autotradeserver.service.domain;
 
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -47,13 +48,5 @@ class StreamDataTest {
         jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-NEO\"], \"isOnlyRealtime\":1}]");
         jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-EOS\"], \"isOnlyRealtime\":1}]");
         jsonList.add("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-XLM\"], \"isOnlyRealtime\":1}]");
-
-        List<JSONObject> x = jsonList.stream()
-                .map(msg -> streamData.returnCurrentMsg(msg))
-                .collect(Collectors.toList());
-
-        for(JSONObject json : x){
-            System.out.println(json);
-        }
     }
 }

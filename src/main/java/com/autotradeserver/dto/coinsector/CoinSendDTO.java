@@ -27,24 +27,18 @@ public class CoinSendDTO {
     @Value("${coin.msg.format}")
     private JSONObject format;
 
-    public JSONArray makeJsonArray(String candidate){
+    public JSONArray makeJsonArray(List<String> candidates){
         List<JSONObject> jsonList = new ArrayList<>();
-        body.put("codes", List.of(candidate));
+        body.put("codes", candidates);
         jsonList.add(new JSONObject(ticket.toString()));
         jsonList.add(new JSONObject(body.toString()));
         jsonList.add(new JSONObject(format.toString()));
         return new JSONArray(jsonList);
     }
 
-    public List<JSONArray> makeMsgList(String theme) {
-        List<JSONArray> msgList = new ArrayList<>();
+    public String makeMsgList(String theme) {
         List<String> candidates = coinDBRepository.findCoinCadidatesByTheme(theme);
-        for(String candidate : candidates){
-            JSONArray jsonArray = makeJsonArray(candidate);
-            msgList.add(jsonArray);
-        }
-        msgList.stream()
-                .forEach(x-> System.out.println(x));
-        return msgList;
+        return makeJsonArray(candidates)
+                .toString();
     }
 }

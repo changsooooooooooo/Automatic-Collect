@@ -1,6 +1,5 @@
 package com.autotradeserver.service.websockets;
 
-import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -23,7 +23,6 @@ class CoinWebSocketTest {
     void returnRecentValue() throws WebSocketException, IOException {
         ExecutorService es = Executors.newSingleThreadExecutor();
         coinWebSocket.createWS("wss://api.upbit.com/websocket/v1");
-        JSONObject json = coinWebSocket.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
-        System.out.println("Json Return Test : " + json);
+        JSONObject jsonArr = coinWebSocket.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\", \"KRW-ETH\"], \"isOnlyRealtime\":1}]");
     }
 }
