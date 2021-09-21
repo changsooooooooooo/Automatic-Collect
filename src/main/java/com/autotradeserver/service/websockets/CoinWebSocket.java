@@ -1,17 +1,19 @@
 package com.autotradeserver.service.websockets;
 
+import com.autotradeserver.config.AWSS3Config;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketException;
 import com.neovisionaries.ws.client.WebSocketExtension;
 import com.neovisionaries.ws.client.WebSocketFactory;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-@Getter
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class CoinWebSocket {
@@ -34,6 +36,7 @@ public class CoinWebSocket {
     }
 
     public JSONObject getRecentMessage(final String msg) {
+        log.info(msg);
         sendMessage(msg);
         return coinWebSocketAdapter.returnCurrentJson();
     }

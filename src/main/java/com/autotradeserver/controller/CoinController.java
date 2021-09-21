@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @Log4j2
 @RestController
@@ -38,9 +39,10 @@ public class CoinController {
 
     @GetMapping("/trade")
     public String streamCoinInfo(@RequestParam(value="theme") String theme)
-            throws IOException, SocketConnectException {
+            throws IOException, SocketConnectException, ExecutionException, InterruptedException {
         List<JSONArray> msgJsonList = coinSendDTO.makeMsgList(theme);
         coinDataPublisher.makeSubscriptionObj(url);
-        return msgJsonList.get(0).toString();
+        coinDataPublisher.subscribe(msgJsonList.get(1).toString());
+        return coinDataPublisher.sendStreamData();
     }
 }

@@ -1,7 +1,5 @@
 package com.autotradeserver.service.domain;
 
-import com.autotradeserver.exceptions.CompletableFutureException;
-import com.autotradeserver.exceptions.CompletableFutureInterruptException;
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.websockets.CoinWebSocket;
@@ -18,7 +16,7 @@ public class StreamData {
 
     private final CoinWebSocket coinWebSocket;
 
-    public void createSocket(String url)
+    public void createSocket(final String url)
             throws SocketCreateException, SocketConnectException {
         try {
             coinWebSocket.createWS(url);

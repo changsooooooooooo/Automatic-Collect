@@ -34,7 +34,9 @@ public class CoinDataPublisher{
         );
     }
 
-    public JSONObject sendStreamData() throws ExecutionException, InterruptedException {
-        return coinDataSubscriber.sendToClient();
+    public String sendStreamData() throws ExecutionException, InterruptedException {
+        return coinDataSubscriber
+                .sendToClient()
+                .toString();
     }
 }

@@ -26,12 +26,4 @@ class CoinWebSocketTest {
         JSONObject json = coinWebSocket.getRecentMessage("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\"], \"isOnlyRealtime\":1}]");
         System.out.println("Json Return Test : " + json);
     }
-
-    @Test
-    @DisplayName("Multi Send Test")
-    void multiSendTest() throws WebSocketException, IOException {
-        coinWebSocket.createWS("wss://api.upbit.com/websocket/v1");
-        WebSocket ws = coinWebSocket.getWs();
-        ws.sendText("[{\"ticket\":\"test\"},{\"type\":\"ticker\",\"codes\":[\"KRW-BTC\", \"KRW-POLY\"]}]");
-    }
 }
