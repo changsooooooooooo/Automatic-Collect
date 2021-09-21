@@ -1,5 +1,6 @@
-package com.autotradeserver.dto.coinsector;
+package com.autotradeserver.dto;
 
+import com.autotradeserver.dto.CoinThemeDTOPK;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

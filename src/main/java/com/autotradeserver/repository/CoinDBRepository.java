@@ -1,7 +1,7 @@
 package com.autotradeserver.repository;
 
-import com.autotradeserver.dto.coinsector.CoinThemeDTO;
-import com.autotradeserver.dto.coinsector.CoinThemeDTOPK;
+import com.autotradeserver.dto.CoinThemeDTO;
+import com.autotradeserver.dto.CoinThemeDTOPK;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,13 +1,11 @@
 package com.autotradeserver.service.domain.streaming;
 
-import com.autotradeserver.dto.coinsector.CoinSendDTO;
+import com.autotradeserver.dto.CoinSendDTO;
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
-import org.json.JSONArray;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;

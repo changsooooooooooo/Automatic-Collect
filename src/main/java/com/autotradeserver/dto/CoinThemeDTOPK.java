@@ -1,4 +1,4 @@
-package com.autotradeserver.dto.coinsector;
+package com.autotradeserver.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

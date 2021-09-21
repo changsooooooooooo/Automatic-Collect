@@ -1,4 +1,4 @@
-package com.autotradeserver.dto.coinsector;
+package com.autotradeserver.dto;
 
 import com.autotradeserver.repository.CoinDBRepository;
 import lombok.RequiredArgsConstructor;
