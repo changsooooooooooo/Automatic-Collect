@@ -59,5 +59,4 @@ values
 ('KRW-ELF', 'china'),
 ('KRW-XTZ', 'user-comb'),
 ('KRW-ELF', 'user-comb');
-
 commit;
