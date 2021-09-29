@@ -2,7 +2,7 @@ insert into coins(coin_name, coin_category)
 values
 ('KRW-BTC', 'bitcoin'),
 ('KRW-BCH', 'bitcoin'),
-('KRW-BCG', 'bitcoin'),
+('KRW-BCHA', 'bitcoin'),
 ('KRW-LTC', 'bitcoin'),
 ('KRW-ETC', 'ethereum'),
 ('KRW-ETH', 'ethereum'),
@@ -43,7 +43,7 @@ values
 ('KRW-POWR', 'utility'),
 ('KRW-CVC', 'utility'),
 ('KRW-REP', 'utility'),
-('KRW-WAX', 'utility'),
+('KRW-WAXP', 'utility'),
 ('KRW-LINK', 'utility'),
 ('KRW-SBD', 'stable'),
 ('KRW-ANKR', 'stable'),
@@ -59,4 +59,3 @@ values
 ('KRW-ELF', 'china'),
 ('KRW-XTZ', 'user-comb'),
 ('KRW-ELF', 'user-comb');
-commit;
