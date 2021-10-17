@@ -1,7 +1,7 @@
 package com.autotradeserver.repository;
 
-import com.autotradeserver.dto.CoinThemeDTO;
-import com.autotradeserver.dto.CoinThemeDTOPK;
+import com.autotradeserver.data.dao.CoinThemeDAO;
+import com.autotradeserver.data.dao.CoinThemeDAOPK;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CoinDBRepository extends JpaRepository<CoinThemeDTO, CoinThemeDTOPK> {
+public interface CoinThemeRepository extends JpaRepository<CoinThemeDAO, CoinThemeDAOPK> {
 
     @Query(value = "select coin_name from coins where coin_category= :theme", nativeQuery = true)
     List<String> findCoinCadidatesByTheme(@Param(value="theme") String theme);

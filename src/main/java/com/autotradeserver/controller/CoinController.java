@@ -1,6 +1,6 @@
 package com.autotradeserver.controller;
 
-import com.autotradeserver.dto.CoinSendDTO;
+import com.autotradeserver.data.dto.CoinSendDTO;
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
 import com.autotradeserver.service.domain.streaming.CoinDataPublisher;

@@ -1,6 +1,5 @@
-package com.autotradeserver.dto;
+package com.autotradeserver.data.dao;
 
-import com.autotradeserver.dto.CoinThemeDTOPK;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +8,11 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 @Getter
-@Entity(name = "coins")
+@Entity(name = "coin_theme")
 @AllArgsConstructor
 @NoArgsConstructor
-public class CoinThemeDTO {
+public class CoinThemeDAO {
 
     @EmbeddedId
-    private CoinThemeDTOPK coinThemeDTOPK;
+    private CoinThemeDAOPK coinThemeDAOPK;
 }

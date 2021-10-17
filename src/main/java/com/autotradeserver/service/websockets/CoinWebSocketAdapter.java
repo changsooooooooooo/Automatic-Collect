@@ -2,7 +2,7 @@ package com.autotradeserver.service.websockets;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.autotradeserver.config.AWSS3Config;
-import com.autotradeserver.repository.CoinDBRepository;
+import com.autotradeserver.repository.CoinThemeRepository;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class CoinWebSocketAdapter extends WebSocketAdapter {
     private CompletableFuture<JSONObject> completableFuture;
 
     private final AWSS3Config awss3Config;
-    private final CoinDBRepository coinDBRepository;
+    private final CoinThemeRepository coinDBRepository;
 
     @Override
     public void onBinaryMessage(WebSocket websocket, byte[] binary) {

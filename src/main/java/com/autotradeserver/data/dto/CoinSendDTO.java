@@ -1,6 +1,6 @@
-package com.autotradeserver.dto;
+package com.autotradeserver.data.dto;
 
-import com.autotradeserver.repository.CoinDBRepository;
+import com.autotradeserver.repository.CoinThemeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CoinSendDTO {
 
-    private final CoinDBRepository coinDBRepository;
+    private final CoinThemeRepository coinDBRepository;
 
     @Value("${coin.msg.ticket}")
     private JSONObject ticket;
