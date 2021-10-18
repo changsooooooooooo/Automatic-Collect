@@ -40,7 +40,6 @@ class CoinListRepositoryTest {
     }
 
     @Test
-    @Rollback(false)
     @DisplayName("Update Test")
     void showUpdate(){
         coinListRepository.save(coinDAO);
