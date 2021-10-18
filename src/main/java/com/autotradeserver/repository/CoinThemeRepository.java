@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CoinThemeRepository extends JpaRepository<CoinThemeDAO, CoinThemeDAOPK> {
+public interface CoinThemeRepository extends JpaRepository<CoinThemeDAO, Long> {
 
     @Query(value = "select coin_name from coins where coin_category= :theme", nativeQuery = true)
     List<String> findCoinCadidatesByTheme(@Param(value="theme") String theme);

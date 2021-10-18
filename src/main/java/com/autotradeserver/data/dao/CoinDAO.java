@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -16,10 +17,13 @@ import java.util.List;
 public class CoinDAO {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="coin_name")
+    private String coinName;
+
     @OneToMany(mappedBy = "coinDAO")
-    private List<CoinThemeDAO> coinThemeDAOList;
+    private List<CoinThemeDAO> coinThemeDAOList = new ArrayList<>();
+
 }
