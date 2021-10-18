@@ -17,9 +17,6 @@ import java.util.List;
 public class CoinDAO {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name="coin_name")
     private String coinName;
 
