@@ -10,9 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Getter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name="coin_list")
 public class CoinDAO {
 
@@ -20,4 +18,8 @@ public class CoinDAO {
     @Column(name="coin_name")
     private String coinName;
 
+    @Builder
+    public CoinDAO(String coinName){
+        this.coinName = coinName;
+    }
 }

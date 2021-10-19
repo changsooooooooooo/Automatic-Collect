@@ -8,14 +8,12 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Getter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "coin_theme")
 public class CoinThemeDAO {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
@@ -24,4 +22,10 @@ public class CoinThemeDAO {
 
     @Column(name="coin_category")
     private String coinCategory;
+
+    @Builder
+    public CoinThemeDAO(CoinDAO coinDAO, String coinCategory){
+        this.coinDAO = coinDAO;
+        this.coinCategory = coinCategory;
+    }
 }
