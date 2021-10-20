@@ -16,7 +16,7 @@ public class CoinThemeDAO {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="coin_name")
     private CoinDAO coinDAO;
 
