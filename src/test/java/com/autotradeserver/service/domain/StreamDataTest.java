@@ -2,7 +2,6 @@ package com.autotradeserver.service.domain;
 
 import com.autotradeserver.exceptions.SocketConnectException;
 import com.autotradeserver.exceptions.SocketCreateException;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @SpringBootTest
 class StreamDataTest {

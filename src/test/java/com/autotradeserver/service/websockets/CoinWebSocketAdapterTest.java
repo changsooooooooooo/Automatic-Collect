@@ -3,7 +3,6 @@ package com.autotradeserver.service.websockets;
 import com.autotradeserver.exceptions.CompletableFutureException;
 import com.autotradeserver.exceptions.CompletableFutureInterruptException;
 import com.neovisionaries.ws.client.WebSocketException;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
