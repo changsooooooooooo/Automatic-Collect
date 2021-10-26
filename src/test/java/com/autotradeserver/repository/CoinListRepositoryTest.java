@@ -1,7 +1,7 @@
 package com.autotradeserver.repository;
 
-import com.autotradeserver.data.dao.CoinDAO;
-import com.autotradeserver.data.dao.CoinThemeDAO;
+import com.autotradeserver.data.entity.CoinEntity;
+import com.autotradeserver.data.entity.CoinThemeEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,17 +19,17 @@ class CoinListRepositoryTest {
     @Autowired
     private CoinThemeRepository coinThemeRepository;
 
-    private CoinDAO coinDAO;
-    private CoinThemeDAO coinThemeDAO;
+    private CoinEntity coinEntity;
+    private CoinThemeEntity coinThemeEntity;
 
     @BeforeEach
     void setUp(){
-        coinDAO = new CoinDAO().builder()
+        coinEntity = new CoinEntity().builder()
                 .coinName("KRW-BTC")
                 .build();
 
-        coinThemeDAO = new CoinThemeDAO().builder()
-                .coinDAO(coinDAO)
+        coinThemeEntity = new CoinThemeEntity().builder()
+                .coinDAO(coinEntity)
                 .coinCategory("bitcoin")
                 .build();
     }
@@ -37,8 +37,8 @@ class CoinListRepositoryTest {
     @Test
     @DisplayName("Update Test")
     void showUpdate(){
-        coinListRepository.save(coinDAO);
-        coinThemeRepository.save(coinThemeDAO);
+        coinListRepository.save(coinEntity);
+        coinThemeRepository.save(coinThemeEntity);
     }
 
 }
